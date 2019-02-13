@@ -30,6 +30,7 @@ results
 ### NPM ###
 npm-debug.log
 node_modules
+package-lock.json
 
 
 ### Bower ###
@@ -47,3 +48,4 @@ node_modules
 
 ## API keys
 client/env/config.js
+client/env/config.example.js
