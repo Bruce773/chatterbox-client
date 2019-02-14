@@ -7,6 +7,7 @@ var App = {
     App.username = window.location.search.substr(10);
 
     FormView.initialize();
+    FormView.fillRoomsMenu();
     RoomsView.initialize();
     MessagesView.initialize();
 
@@ -15,7 +16,7 @@ var App = {
     App.fetch(App.stopSpinner);
   },
 
-  fetch: function(callback = () => {}) {
+  fetch: function(callback = () => {}, selectedRoom = 'all') {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
@@ -73,13 +74,21 @@ var App = {
         if (!item.username) {
           item.username = 'anonymous';
         }
-        if (item.text) {
-          item.username = _escapeChars(item.username);
-          item.text = _escapeChars(item.text);
-          $('#chats').append(MessageView.render(item));
+        if (selectedRoom !== 'all') {
+          if (item.text && item.roomname === selectedRoom) {
+            item.username = _escapeChars(item.username);
+            item.text = _escapeChars(item.text);
+            $('#chats').append(MessageView.render(item));
+          }
+        } else {
+          if (item.text) {
+            item.username = _escapeChars(item.username);
+            item.text = _escapeChars(item.text);
+            $('#chats').append(MessageView.render(item));
+          }
         }
       });
-      App.stopSpinner();
+      // App.stopSpinner();
       callback();
     });
   },
