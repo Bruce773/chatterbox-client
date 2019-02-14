@@ -7,11 +7,11 @@ var RoomsView = {
       var option = $('.roomSelector')
         .children('option:selected')
         .val();
-      console.log(
-        $('.roomSelector')
-          .children('option:selected')
-          .val()
-      );
+      // console.log(
+      //   $('.roomSelector')
+      //     .children('option:selected')
+      //     .val()
+      // );
       App.startSpinner();
       $('#chats').html('');
       App.fetch(App.stopSpinner, option);

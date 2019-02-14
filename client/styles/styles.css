@@ -67,6 +67,7 @@ form input[type=text] {
 }
 
 .chat .username {
+    display:inline-block;
     font-weight: 800;
 }
 
@@ -88,4 +89,10 @@ form input[type=text] {
     color: #fff;
     background-color: #0090da;
 }
-
+.roomNameOnMessage{
+    display: inline-block;
+    margin-left: 36px;
+    color: dodgerblue;
+    font-weight: bolder;
+    text-decoration: underline;
+}

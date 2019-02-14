@@ -39,7 +39,7 @@ var Parse = {
       message.roomname = selectedRoom;
     }
 
-    console.log(selectedRoom);
+    // console.log(selectedRoom);
 
     $.ajax({
       // This is the url you should use to communicate with the parse API server.

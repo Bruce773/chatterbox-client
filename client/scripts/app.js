@@ -78,13 +78,16 @@ var App = {
           if (item.text && item.roomname === selectedRoom) {
             item.username = _escapeChars(item.username);
             item.text = _escapeChars(item.text);
-            $('#chats').append(MessageView.render(item));
+            $('#chats').append(MessageView.renderWithRoomName(item));
           }
         } else {
           if (item.text) {
             item.username = _escapeChars(item.username);
             item.text = _escapeChars(item.text);
             $('#chats').append(MessageView.render(item));
+          }
+          if (item.roomname) {
+            $('#chats').append(MessageView.renderWithRoomName(item));
           }
         }
       });
