@@ -14,6 +14,7 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    // Friends.initialize();
   },
 
   fetch: function(callback = () => {}, selectedRoom = 'all') {
@@ -71,6 +72,7 @@ var App = {
         // pass each item into the messageView.render and append the result to #chats div
         // count++;
         // console.log(item, count);
+
         if (!item.username) {
           item.username = 'anonymous';
         }
@@ -79,19 +81,41 @@ var App = {
             item.username = _escapeChars(item.username);
             item.text = _escapeChars(item.text);
             $('#chats').append(MessageView.renderWithRoomName(item));
+            // check to see if the username exists on the Friends obj
+            // console.log(Friends.friendsObj, Friends.friendsObj[`${item.username}`], item.username);
+            if (Friends.friendsObj[`${item.username}`]) {
+              // console.log(item.username, ' is in friends list');
+              // add highlight style to $('.username:contains(item.username)').css("color", "light-blue");
+              $(`.username:contains('${item.username}')`).css('color', 'red');
+            }
           }
         } else {
           if (item.text && !item.roomname) {
             item.username = _escapeChars(item.username);
             item.text = _escapeChars(item.text);
             $('#chats').append(MessageView.render(item));
+            // check to see if the username exists on the Friends obj
+            // console.log(Friends.friendsObj, Friends.friendsObj[`${item.username}`], item.username);
+            if (Friends.friendsObj[`${item.username}`]) {
+              // console.log(item.username, ' is in friends list');
+              // add highlight style to $('.username:contains(item.username)').css("color", "light-blue");
+              $(`.username:contains('${item.username}')`).css('color', 'red');
+            }
           }
           if (item.roomname && item.text) {
             $('#chats').append(MessageView.renderWithRoomName(item));
+            // check to see if the username exists on the Friends obj
+            // console.log(Friends.friendsObj, Friends.friendsObj[`${item.username}`], item.username);
+            if (Friends.friendsObj[`${item.username}`]) {
+              // console.log(item.username, ' is in friends list');
+              // add highlight style to $('.username:contains(item.username)').css("color", "light-blue");
+              $(`.username:contains('${item.username}')`).css('color', 'red');
+            }
           }
         }
       });
       // App.stopSpinner();
+      Friends.initialize();
       callback();
     });
   },
