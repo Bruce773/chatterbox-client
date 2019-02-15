@@ -7,6 +7,7 @@ var RoomsView = {
       var option = $('.roomSelector')
         .children('option:selected')
         .val();
+      console.log(option);
       // console.log(
       //   $('.roomSelector')
       //     .children('option:selected')

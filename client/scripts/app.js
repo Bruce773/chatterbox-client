@@ -81,12 +81,12 @@ var App = {
             $('#chats').append(MessageView.renderWithRoomName(item));
           }
         } else {
-          if (item.text) {
+          if (item.text && !item.roomname) {
             item.username = _escapeChars(item.username);
             item.text = _escapeChars(item.text);
             $('#chats').append(MessageView.render(item));
           }
-          if (item.roomname) {
+          if (item.roomname && item.text) {
             $('#chats').append(MessageView.renderWithRoomName(item));
           }
         }

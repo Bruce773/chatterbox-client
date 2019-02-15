@@ -3,6 +3,7 @@ var FormView = {
 
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
+    $('.addRoomBtn').on('click', FormView.createNewRoom);
   },
 
   handleSubmit: function(event) {
@@ -15,6 +16,7 @@ var FormView = {
     Parse.create(text);
     $('#chats').html('');
     App.fetch(App.stopSpinner, option);
+    $('#message').val(' ');
     console.log('click!');
   },
 
@@ -40,5 +42,15 @@ var FormView = {
         $('.roomSelector').append(`<option value='${key}'>${key}</option>`);
       }
     });
+  },
+  createNewRoom: function() {
+    var text = $('#message').val();
+    if (!text) {
+      alert(
+        "You haven't entered in a room name. Please enter in a room name and try again!"
+      );
+    } else {
+      $('.roomSelector').append(`<option value="${text}">${text}</option>`);
+    }
   },
 };
